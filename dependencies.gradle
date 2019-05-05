@@ -30,14 +30,20 @@ ext {
 
 
     domainDependencies = [
-            rxJava        : "io.reactivex.rxjava2:rxkotlin:${rxJavaVersion}",
+            rxJava        : "io.reactivex.rxjava2:rxjava:${rxJavaVersion}",
             javaxInject   : "javax.inject:javax.inject:${javaxInjectVersion}",
-            javaxAnnotaion: "javax.annotation:jsr250-api:${javaxAnnotationVersion}"
+            javaxAnnotation: "javax.annotation:jsr250-api:${javaxAnnotationVersion}"
     ]
 
     domainTestDependencies = [
             junit  : "junit:junit:${jUnitVersion}",
             mockito: "com.nhaarman:mockito-kotlin:${mockitoKotlinVersion}"
+    ]
+
+    presentaionDependencies = [
+            rxJava        : "io.reactivex.rxjava2:rxjava:${rxJavaVersion}",
+            javaxInject   : "javax.inject:javax.inject:${javaxInjectVersion}",
+            javaxAnnotation: "javax.annotation:jsr250-api:${javaxAnnotationVersion}"
     ]
 
 
