@@ -1,0 +1,21 @@
+apply plugin: 'java-library'
+
+dependencies {
+    def dataDependencies = rootProject.ext.dataDependencies
+    def dataTestDependencies = rootProject.ext.dataTestDependencies
+
+    compile project(':domain')
+
+    implementation dataDependencies.rxJava
+    implementation dataDependencies.javaxAnnotation
+    implementation dataDependencies.javaxInject
+    implementation dataDependencies.kotlin
+    implementation dataDependencies.gson
+
+
+    testImplementation dataTestDependencies.mockito
+    testImplementation dataTestDependencies.junit
+}
+
+sourceCompatibility = "7"
+targetCompatibility = "7"
