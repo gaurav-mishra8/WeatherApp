@@ -1,0 +1,44 @@
+ext {
+
+    //Android
+    androidBuildToolsVersion = '28.0.0'
+    androidMinSdkVersion = 16
+    androidCompileSdkVersion = 28
+    androidTargetSdkVersion = 28
+
+
+    //Libraries
+    supportLibVersion = '28.0.0'
+    constraintLayoutVersion = '1.1.3'
+    gsonVersion = '2.8.1'
+    okHttpVersion = '3.8.1'
+    retrofitVersion = '2.3.0'
+    daggerVersion = '2.20'
+    archCompVersion = '1.1.1'
+    rxJavaVersion = '2.0.2'
+    rxAndroidVersion = '2.0.1'
+    javaxAnnotationVersion = '1.0'
+    javaxInjectVersion = '1'
+
+
+    //Testing
+    jUnitVersion = '4.12'
+    espressoVersion = '3.0.2'
+    mockitoVersion = '1.9.5'
+    mockitoKotlinVersion = '1.5.0'
+    testRunnerVersion = '1.0.2'
+
+
+    domainDependencies = [
+            rxJava        : "io.reactivex.rxjava2:rxkotlin:${rxJavaVersion}",
+            javaxInject   : "javax.inject:javax.inject:${javaxInjectVersion}",
+            javaxAnnotaion: "javax.annotation:jsr250-api:${javaxAnnotationVersion}"
+    ]
+
+    domainTestDependencies = [
+            junit  : "junit:junit:${jUnitVersion}",
+            mockito: "com.nhaarman:mockito-kotlin:${mockitoKotlinVersion}"
+    ]
+
+
+}
