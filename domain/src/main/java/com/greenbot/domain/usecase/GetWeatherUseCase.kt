@@ -13,8 +13,8 @@ class GetWeatherUseCase(
     executionThread: ExecutionThread
 ) : SingleUseCase<WeatherForecast, GetWeatherUseCase.Params>(executionThread) {
 
-    override fun buildUseCaseSingle(params: Params?): Single<WeatherForecast> {
-        if (params == null) throw IllegalStateException("No location info provided")
+    public override fun buildUseCaseSingle(params: Params?): Single<WeatherForecast> {
+        if (params == null) throw IllegalArgumentException("No location info provided")
         return weatherRepository.getWeatherForecast(params.lat, params.lon, params.days)
     }
 
