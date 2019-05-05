@@ -5,8 +5,9 @@ import com.greenbot.domain.model.Forecast
 import com.greenbot.domain.model.WeatherForecast
 import java.text.SimpleDateFormat
 import java.util.*
+import javax.inject.Inject
 
-class WeatherForecastDataMapper() : DataModelMapper<WeatherForecastResponse, WeatherForecast> {
+class WeatherForecastDataMapper @Inject constructor() : DataModelMapper<WeatherForecastResponse, WeatherForecast> {
 
     override fun mapFromDataModel(dataModel: WeatherForecastResponse): WeatherForecast {
         val avgForecastList = mutableListOf<Forecast>()
@@ -26,7 +27,7 @@ class WeatherForecastDataMapper() : DataModelMapper<WeatherForecastResponse, Wea
 
 }
 
-fun getDayFromDate(dateString: String): String {
+private fun getDayFromDate(dateString: String): String {
     val simpleDateFormat = SimpleDateFormat("YYYY-MM-DD", Locale.getDefault())
     val date = simpleDateFormat.parse(dateString)
 

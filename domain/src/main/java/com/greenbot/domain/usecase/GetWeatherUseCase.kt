@@ -4,11 +4,12 @@ import com.greenbot.domain.ExecutionThread
 import com.greenbot.domain.model.WeatherForecast
 import com.greenbot.domain.repository.WeatherRepository
 import io.reactivex.Single
+import javax.inject.Inject
 
 /**
  * Usecase class to fetch weather forecast for provided number of days
  */
-class GetWeatherUseCase(
+class GetWeatherUseCase @Inject constructor(
     private val weatherRepository: WeatherRepository,
     executionThread: ExecutionThread
 ) : SingleUseCase<WeatherForecast, GetWeatherUseCase.Params>(executionThread) {

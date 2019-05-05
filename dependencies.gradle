@@ -13,7 +13,7 @@ ext {
     gsonVersion = '2.8.1'
     okHttpVersion = '3.8.1'
     retrofitVersion = '2.3.0'
-    daggerVersion = '2.20'
+    daggerVersion = '2.11'
     archCompVersion = '1.1.1'
     rxJavaVersion = '2.0.2'
     rxAndroidVersion = '2.0.1'
@@ -42,11 +42,16 @@ ext {
     ]
 
     dataDependencies = [
-            rxJava         : "io.reactivex.rxjava2:rxjava:${rxJavaVersion}",
-            javaxInject    : "javax.inject:javax.inject:${javaxInjectVersion}",
-            javaxAnnotation: "javax.annotation:jsr250-api:${javaxAnnotationVersion}",
-            kotlin         : "org.jetbrains.kotlin:kotlin-stdlib-jdk7:${kotlinVersion}",
-            gson           : "com.google.code.gson:gson:${gsonVersion}",
+            rxJava           : "io.reactivex.rxjava2:rxjava:${rxJavaVersion}",
+            javaxInject      : "javax.inject:javax.inject:${javaxInjectVersion}",
+            javaxAnnotation  : "javax.annotation:jsr250-api:${javaxAnnotationVersion}",
+            kotlin           : "org.jetbrains.kotlin:kotlin-stdlib-jdk7:${kotlinVersion}",
+            okHttp           : "com.squareup.okhttp3:okhttp:${okHttpVersion}",
+            okHttpLogger     : "com.squareup.okhttp3:logging-interceptor:${okHttpVersion}",
+            retrofit         : "com.squareup.retrofit2:retrofit:${retrofitVersion}",
+            retrofitConverter: "com.squareup.retrofit2:converter-gson:${retrofitVersion}",
+            retrofitAdapter  : "com.squareup.retrofit2:adapter-rxjava2:${retrofitVersion}",
+            gson             : "com.google.code.gson:gson:${gsonVersion}",
     ]
 
     dataTestDependencies = [
@@ -54,10 +59,29 @@ ext {
             mockito: "com.nhaarman:mockito-kotlin:${mockitoKotlinVersion}"
     ]
 
-    presentaionDependencies = [
-            rxJava         : "io.reactivex.rxjava2:rxjava:${rxJavaVersion}",
-            javaxInject    : "javax.inject:javax.inject:${javaxInjectVersion}",
-            javaxAnnotation: "javax.annotation:jsr250-api:${javaxAnnotationVersion}"
+    presentationDependencies = [
+            daggerCompiler        : "com.google.dagger:dagger-compiler:${daggerVersion}",
+            dagger                : "com.google.dagger:dagger:${daggerVersion}",
+            daggerAndroid         : "com.google.dagger:dagger-android:${daggerVersion}",
+            daggerSupport         : "com.google.dagger:dagger-android-support:${daggerVersion}",
+            daggerAndroidProcessor: "com.google.dagger:dagger-android-processor:${daggerVersion}",
+            kotlin                : "org.jetbrains.kotlin:kotlin-stdlib-jdk7:${kotlinVersion}",
+            rxJava                : "io.reactivex.rxjava2:rxjava:${rxJavaVersion}",
+            rxAndroid             : "io.reactivex.rxjava2:rxandroid:${rxAndroidVersion}",
+            javaxInject           : "javax.inject:javax.inject:${javaxInjectVersion}",
+            javaxAnnotation       : "javax.annotation:jsr250-api:${javaxAnnotationVersion}",
+            androidSupportV4      : "com.android.support:support-v4:${supportLibVersion}",
+            appCompatV7           : "com.android.support:appcompat-v7:${supportLibVersion}",
+            supportRecyclerView   : "com.android.support:recyclerview-v7:${supportLibVersion}",
+            supportDesign         : "com.android.support:design:${supportLibVersion}",
+            constraintLayout      : "com.android.support.constraint:constraint-layout:${constraintLayoutVersion}",
+            archComponents        : "android.arch.lifecycle:extensions:${archCompVersion}",
+    ]
+
+    presentationTestDependencies = [
+            junit      : "junit:junit:${jUnitVersion}",
+            mockito    : "com.nhaarman:mockito-kotlin:${mockitoKotlinVersion}",
+            archTesting: "android.arch.core:core-testing:${archCompVersion}",
     ]
 
 

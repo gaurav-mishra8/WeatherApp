@@ -1,4 +1,4 @@
-package com.greenbot.data
+package com.greenbot.data.remote
 
 import com.greenbot.data.model.WeatherForecastResponse
 import io.reactivex.Single
