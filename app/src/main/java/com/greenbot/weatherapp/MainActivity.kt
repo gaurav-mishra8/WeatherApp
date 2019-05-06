@@ -4,8 +4,12 @@ import android.arch.lifecycle.Observer
 import android.arch.lifecycle.ViewModelProviders
 import android.os.Bundle
 import android.support.v7.app.AppCompatActivity
+import android.view.View
 import com.greenbot.domain.model.WeatherForecast
 import dagger.android.AndroidInjection
+import kotlinx.android.synthetic.main.activity_home.*
+import kotlinx.android.synthetic.main.home_content_layout.*
+import kotlinx.android.synthetic.main.home_error_layout.*
 import javax.inject.Inject
 
 class MainActivity : AppCompatActivity() {
@@ -20,7 +24,12 @@ class MainActivity : AppCompatActivity() {
         AndroidInjection.inject(this)
 
         super.onCreate(savedInstanceState)
-        setContentView(R.layout.activity_main)
+        setContentView(R.layout.activity_home)
+
+        home_rv_forecast.apply {
+            hasFixedSize()
+            adapter = ForecastListAdapter()
+        }
 
         mainViewModel = ViewModelProviders.of(this, viewModelFactory).get(MainViewModel::class.java)
 
@@ -45,21 +54,34 @@ class MainActivity : AppCompatActivity() {
                     }
                 }
             } ?: run {
-
+                showErrorState("")
             }
         })
     }
 
 
     private fun showLoadingState() {
-
+        home_error_view.visibility = View.GONE
+        home_content_view.visibility = View.GONE
+        home_progressbar.visibility = View.VISIBLE
     }
 
     private fun showSuccessState(weatherForecast: WeatherForecast) {
+        home_error_view.visibility = View.GONE
+        home_content_view.visibility = View.VISIBLE
+        home_progressbar.visibility = View.GONE
+
+        home_tv_temperature.text = weatherForecast.currentTemp.toString()
+        home_tv_location.text = weatherForecast.locationName
+        val forecastListAdapter = home_rv_forecast.adapter as ForecastListAdapter
+        forecastListAdapter.setForecastList(weatherForecast.forecastList)
 
     }
 
     private fun showErrorState(errorMsg: String) {
+        home_error_view.visibility = View.VISIBLE
+        home_content_view.visibility = View.GONE
+        home_progressbar.visibility = View.GONE
 
     }
 }
