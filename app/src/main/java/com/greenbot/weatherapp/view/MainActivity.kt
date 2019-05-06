@@ -5,6 +5,7 @@ import android.arch.lifecycle.ViewModelProviders
 import android.os.Bundle
 import android.support.v7.app.AppCompatActivity
 import android.view.View
+import android.view.animation.AnimationUtils
 import com.greenbot.weatherapp.R
 import com.greenbot.weatherapp.ResourceStatus
 import com.greenbot.weatherapp.ViewModelFactory
@@ -14,6 +15,7 @@ import kotlinx.android.synthetic.main.activity_home.*
 import kotlinx.android.synthetic.main.home_content_layout.*
 import kotlinx.android.synthetic.main.home_error_layout.*
 import javax.inject.Inject
+
 
 class MainActivity : AppCompatActivity() {
 
@@ -32,6 +34,7 @@ class MainActivity : AppCompatActivity() {
         home_rv_forecast.apply {
             hasFixedSize()
             adapter = ForecastListAdapter()
+            addItemDecoration(VerticalDividerItemDecoration(this@MainActivity))
         }
 
         mainViewModel = ViewModelProviders.of(this, viewModelFactory).get(MainViewModel::class.java)
@@ -66,13 +69,21 @@ class MainActivity : AppCompatActivity() {
     private fun showLoadingState() {
         home_error_view.visibility = View.GONE
         home_content_view.visibility = View.GONE
-        home_progressbar.visibility = View.VISIBLE
+        home_progress_container.visibility = View.VISIBLE
+
+        val rotateAnimation = AnimationUtils.loadAnimation(this, R.anim.rotation)
+        home_progress_view.animation = rotateAnimation
     }
 
     private fun showSuccessState(weatherForecast: WeatherForecastViewData) {
         home_error_view.visibility = View.GONE
         home_content_view.visibility = View.VISIBLE
-        home_progressbar.visibility = View.GONE
+        home_progress_container.visibility = View.GONE
+
+
+        val slideInBottom = AnimationUtils.loadAnimation(this, R.anim.slide_in_bottom)
+        home_rv_container.animation = slideInBottom
+
 
         home_tv_temperature.text = weatherForecast.currentTemp.toString()
         home_tv_location.text = weatherForecast.locationName
@@ -84,7 +95,7 @@ class MainActivity : AppCompatActivity() {
     private fun showErrorState(errorMsg: String) {
         home_error_view.visibility = View.VISIBLE
         home_content_view.visibility = View.GONE
-        home_progressbar.visibility = View.GONE
+        home_progress_container.visibility = View.GONE
 
         home_tv_error.text = errorMsg
 
