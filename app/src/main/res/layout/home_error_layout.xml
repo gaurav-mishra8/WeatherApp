@@ -30,6 +30,7 @@
             android:id="@+id/button" app:layout_constraintStart_toStartOf="parent"
             app:layout_constraintEnd_toEndOf="parent"
             android:layout_marginBottom="8dp"
+            android:text="@string/home_retry"
             app:layout_constraintBottom_toBottomOf="parent"
             app:layout_constraintHorizontal_bias="0.5"
             android:layout_marginTop="@dimen/home_retry_top_margin"

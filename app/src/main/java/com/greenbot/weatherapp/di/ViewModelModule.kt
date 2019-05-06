@@ -2,7 +2,7 @@ package com.greenbot.weatherapp.di
 
 import android.arch.lifecycle.ViewModel
 import android.arch.lifecycle.ViewModelProvider
-import com.greenbot.weatherapp.MainViewModel
+import com.greenbot.weatherapp.view.MainViewModel
 import com.greenbot.weatherapp.ViewModelFactory
 import dagger.Binds
 import dagger.MapKey

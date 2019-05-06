@@ -1,11 +1,14 @@
-package com.greenbot.weatherapp
+package com.greenbot.weatherapp.view
 
 import android.arch.lifecycle.Observer
 import android.arch.lifecycle.ViewModelProviders
 import android.os.Bundle
 import android.support.v7.app.AppCompatActivity
 import android.view.View
-import com.greenbot.domain.model.WeatherForecast
+import com.greenbot.weatherapp.R
+import com.greenbot.weatherapp.ResourceStatus
+import com.greenbot.weatherapp.ViewModelFactory
+import com.greenbot.weatherapp.model.WeatherForecastViewData
 import dagger.android.AndroidInjection
 import kotlinx.android.synthetic.main.activity_home.*
 import kotlinx.android.synthetic.main.home_content_layout.*
@@ -66,7 +69,7 @@ class MainActivity : AppCompatActivity() {
         home_progressbar.visibility = View.VISIBLE
     }
 
-    private fun showSuccessState(weatherForecast: WeatherForecast) {
+    private fun showSuccessState(weatherForecast: WeatherForecastViewData) {
         home_error_view.visibility = View.GONE
         home_content_view.visibility = View.VISIBLE
         home_progressbar.visibility = View.GONE
@@ -82,6 +85,8 @@ class MainActivity : AppCompatActivity() {
         home_error_view.visibility = View.VISIBLE
         home_content_view.visibility = View.GONE
         home_progressbar.visibility = View.GONE
+
+        home_tv_error.text = errorMsg
 
     }
 }

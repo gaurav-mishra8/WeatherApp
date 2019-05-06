@@ -1,6 +1,6 @@
 package com.greenbot.data.mapper
 
-interface DataModelMapper<E, D> {
+interface DataModelMapper<in E, out D> {
 
     fun mapFromDataModel(dataModel: E): D
 
