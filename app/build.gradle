@@ -32,6 +32,7 @@ dependencies {
     implementation presentationDependencies.constraintLayout
     implementation presentationDependencies.archComponents
     implementation presentationDependencies.recyclerView
+    implementation presentationDependencies.playServicesLocation
 
     implementation presentationDependencies.rxJava
     implementation presentationDependencies.rxAndroid

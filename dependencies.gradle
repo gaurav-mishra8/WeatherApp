@@ -19,7 +19,7 @@ ext {
     rxAndroidVersion = '2.0.1'
     javaxAnnotationVersion = '1.0'
     javaxInjectVersion = '1'
-
+    projectPlayServicesVersion = '15.0.1'
 
     //Testing
     jUnitVersion = '4.12'
@@ -76,6 +76,8 @@ ext {
             supportDesign         : "com.android.support:design:${supportLibVersion}",
             constraintLayout      : "com.android.support.constraint:constraint-layout:${constraintLayoutVersion}",
             archComponents        : "android.arch.lifecycle:extensions:${archCompVersion}",
+            playServicesLocation: "com.google.android.gms:play-services-location:${projectPlayServicesVersion}"
+
     ]
 
     presentationTestDependencies = [

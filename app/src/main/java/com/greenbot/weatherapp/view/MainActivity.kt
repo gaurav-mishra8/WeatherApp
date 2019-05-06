@@ -1,15 +1,23 @@
 package com.greenbot.weatherapp.view
 
+import android.Manifest
 import android.arch.lifecycle.Observer
 import android.arch.lifecycle.ViewModelProviders
+import android.os.Build
 import android.os.Bundle
 import android.support.v7.app.AppCompatActivity
 import android.view.View
 import android.view.animation.AnimationUtils
+import com.greenbot.weatherapp.PermissionManager
+import com.greenbot.weatherapp.PermissionManager.PERMISSIONS_REQUEST_GET_LOCATION
 import com.greenbot.weatherapp.R
 import com.greenbot.weatherapp.ResourceStatus
 import com.greenbot.weatherapp.ViewModelFactory
+import com.greenbot.weatherapp.location.LocationListener
+import com.greenbot.weatherapp.location.LocationModel
+import com.greenbot.weatherapp.location.LocationProvider
 import com.greenbot.weatherapp.model.WeatherForecastViewData
+import com.greenbot.weatherapp.view.MainViewModel.Companion.ACTION_RETRY
 import dagger.android.AndroidInjection
 import kotlinx.android.synthetic.main.activity_home.*
 import kotlinx.android.synthetic.main.home_content_layout.*
@@ -17,18 +25,19 @@ import kotlinx.android.synthetic.main.home_error_layout.*
 import javax.inject.Inject
 
 
-class MainActivity : AppCompatActivity() {
+class MainActivity : AppCompatActivity(), LocationListener {
 
     @Inject
     lateinit var viewModelFactory: ViewModelFactory
 
     private lateinit var mainViewModel: MainViewModel
+    private lateinit var locationProvider: LocationProvider
 
     override fun onCreate(savedInstanceState: Bundle?) {
-
         AndroidInjection.inject(this)
 
         super.onCreate(savedInstanceState)
+
         setContentView(R.layout.activity_home)
 
         home_rv_forecast.apply {
@@ -37,12 +46,37 @@ class MainActivity : AppCompatActivity() {
             addItemDecoration(VerticalDividerItemDecoration(this@MainActivity))
         }
 
+        home_btn_retry.setOnClickListener {
+            mainViewModel.onUserEvent(ACTION_RETRY)
+        }
+
         mainViewModel = ViewModelProviders.of(this, viewModelFactory).get(MainViewModel::class.java)
 
         observeViewModel()
 
-        mainViewModel.fetchWeatherForecastDetails(28.7, 78.5)
+        locationProvider = LocationProvider(this, this.lifecycle, this)
 
+        requestLocationPermission()
+
+    }
+
+    private fun requestLocationPermission() {
+        if (!PermissionManager.checkSelfPermission(this)) {
+            if (Build.VERSION.SDK_INT >= Build.VERSION_CODES.M) {
+                requestPermissions(
+                    arrayOf(
+                        Manifest.permission.ACCESS_FINE_LOCATION,
+                        Manifest.permission.ACCESS_COARSE_LOCATION
+                    ), PERMISSIONS_REQUEST_GET_LOCATION
+                )
+            }
+        } else {
+            fetchLocation()
+        }
+    }
+
+    private fun fetchLocation() {
+        locationProvider.requestLocationUpdates()
     }
 
     private fun observeViewModel() {
@@ -61,6 +95,14 @@ class MainActivity : AppCompatActivity() {
                 }
             } ?: run {
                 showErrorState("")
+            }
+        })
+
+        mainViewModel.getCommand().observe(this, Observer {
+            when (it) {
+                Command.FetchLocation -> {
+                    fetchLocation()
+                }
             }
         })
     }
@@ -98,6 +140,21 @@ class MainActivity : AppCompatActivity() {
         home_progress_container.visibility = View.GONE
 
         home_tv_error.text = errorMsg
+
+    }
+
+    override fun updateLocation(locationModel: LocationModel) {
+        mainViewModel.fetchWeatherForecastDetails(locationModel.latitude, locationModel.longitude)
+    }
+
+    override fun onRequestPermissionsResult(requestCode: Int, permissions: Array<out String>, grantResults: IntArray) {
+        super.onRequestPermissionsResult(requestCode, permissions, grantResults)
+        if (requestCode == PERMISSIONS_REQUEST_GET_LOCATION) {
+
+            if (PermissionManager.verifyPermissions(grantResults)) {
+                fetchLocation()
+            }
+        }
 
     }
 }

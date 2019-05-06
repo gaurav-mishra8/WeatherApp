@@ -17,23 +17,41 @@ class MainViewModel @Inject constructor(
     private val mapper: WeatherForecastViewMapper
 ) : ViewModel() {
 
+    companion object {
+        const val ACTION_RETRY = "retry"
+    }
+
     private val weatherForecastLiveData = MutableLiveData<Resource<WeatherForecastViewData>>()
-    private val disposable = SingleDisposableObserver()
+    private val commandLiveData = MutableLiveData<Command>()
+
+    init {
+        weatherForecastLiveData.value = Resource(status = ResourceStatus.LOADING)
+    }
 
     fun getWeatherForecast(): LiveData<Resource<WeatherForecastViewData>> = weatherForecastLiveData
 
-    fun fetchWeatherForecastDetails(latitude: Double, longitude: Double) {
+    fun getCommand(): LiveData<Command> = commandLiveData
 
+    fun fetchWeatherForecastDetails(latitude: Double, longitude: Double) {
         weatherForecastLiveData.value =
             Resource(status = ResourceStatus.LOADING)
-
-        getWeatherUseCase.execute(disposable, GetWeatherUseCase.Params(latitude, longitude, 4))
-
+        getWeatherUseCase.execute(SingleDisposableObserver(), GetWeatherUseCase.Params(latitude, longitude, 5))
     }
 
     override fun onCleared() {
         super.onCleared()
         getWeatherUseCase.clearDisposables()
+    }
+
+    fun onUserEvent(action: String) {
+
+        when (action) {
+            ACTION_RETRY -> {
+                weatherForecastLiveData.value = Resource(status = ResourceStatus.LOADING)
+                commandLiveData.value = Command.FetchLocation
+            }
+        }
+
     }
 
     inner class SingleDisposableObserver() : DisposableSingleObserver<WeatherForecast>() {
@@ -56,4 +74,8 @@ class MainViewModel @Inject constructor(
         }
     }
 
+}
+
+sealed class Command {
+    object FetchLocation : Command()
 }

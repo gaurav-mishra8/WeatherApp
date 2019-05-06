@@ -12,7 +12,7 @@ class WeatherForecastDataMapper @Inject constructor() : DataModelMapper<WeatherF
     override fun mapFromDataModel(dataModel: WeatherForecastResponse): WeatherForecast {
         val avgForecastList = mutableListOf<Forecast>()
 
-        dataModel.forecast!!.forecastDayList.forEach {
+        dataModel.forecast!!.forecastDayList.takeLast(4).forEach {
             val dayOfWeek = getDayFromDate(it.date!!)
             val avgTemp = it.day!!.avgTemp!!
             avgForecastList.add(Forecast(dayOfWeek, avgTemp))
@@ -28,7 +28,7 @@ class WeatherForecastDataMapper @Inject constructor() : DataModelMapper<WeatherF
 }
 
 private fun getDayFromDate(dateString: String): String {
-    val simpleDateFormat = SimpleDateFormat("YYYY-MM-DD", Locale.getDefault())
+    val simpleDateFormat = SimpleDateFormat("yyyy-MM-dd", Locale.getDefault())
     val date = simpleDateFormat.parse(dateString)
 
     val calendar = Calendar.getInstance()
