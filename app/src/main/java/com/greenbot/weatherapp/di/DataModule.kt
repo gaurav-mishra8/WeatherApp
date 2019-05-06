@@ -23,6 +23,7 @@ abstract class DataModule {
     @Module
     companion object {
         @Provides
+        @JvmStatic
         fun provideWeatherForecastService(): WeatherForecastService {
             return WeatherForecastServiceFactory.buildWeatherForecastService(BuildConfig.DEBUG)
         }

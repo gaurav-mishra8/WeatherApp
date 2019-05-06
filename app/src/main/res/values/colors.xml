@@ -3,4 +3,7 @@
     <color name="colorPrimary">#008577</color>
     <color name="colorPrimaryDark">#00574B</color>
     <color name="colorAccent">#D81B60</color>
+
+    <color name="home_background_color">#F5F6F7</color>
+    <color name="home_temperature_font_color">#2A2A2A</color>
 </resources>

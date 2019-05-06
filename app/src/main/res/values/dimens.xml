@@ -1,0 +1,12 @@
+<?xml version="1.0" encoding="utf-8"?>
+<resources>
+
+    <dimen name="home_temperature_top_margin">56dp</dimen>
+    <dimen name="home_location_bottom_margin">62dp</dimen>
+    <dimen name="home_forecast_list_item_height">80dp</dimen>
+
+    <dimen name="home_temperature_font_size">96sp</dimen>
+    <dimen name="home_location_font_size">36sp</dimen>
+    <dimen name="home_forecast_day_font_size">16sp</dimen>
+    <dimen name="home_forecast_daytemp_font_size">16sp</dimen>
+</resources>

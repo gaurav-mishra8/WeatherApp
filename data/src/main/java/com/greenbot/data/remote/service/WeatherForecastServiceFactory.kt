@@ -13,12 +13,12 @@ object WeatherForecastServiceFactory {
         val okHttpClient = makeOkHttpClient(
             makeLoggingInterceptor((isDebug))
         )
-        return makeGithubTrendingService(okHttpClient, Gson())
+        return makeWeatherForecastService(okHttpClient, Gson())
     }
 
-    private fun makeGithubTrendingService(okHttpClient: OkHttpClient, gson: Gson): WeatherForecastService {
+    private fun makeWeatherForecastService(okHttpClient: OkHttpClient, gson: Gson): WeatherForecastService {
         val retrofit = Retrofit.Builder()
-            .baseUrl("https://api.github.com/")
+            .baseUrl("http://api.apixu.com/v1/")
             .client(okHttpClient)
             .addCallAdapterFactory(RxJava2CallAdapterFactory.create())
             .addConverterFactory(GsonConverterFactory.create(gson))
@@ -29,6 +29,17 @@ object WeatherForecastServiceFactory {
     private fun makeOkHttpClient(httpLoggingInterceptor: HttpLoggingInterceptor): OkHttpClient {
         return OkHttpClient.Builder()
             .addInterceptor(httpLoggingInterceptor)
+            .addInterceptor { chain ->
+                val originalRequest = chain.request()
+                val originalUrl = originalRequest.url()
+
+                val newUrl = originalUrl.newBuilder().addQueryParameter("key", "b168d65f3f7e4603ad4112333190405")
+                    .build()
+
+                val requestBuilder = originalRequest.newBuilder().url(newUrl)
+                val request = requestBuilder.build()
+                chain.proceed(request)
+            }
             .build()
     }
 

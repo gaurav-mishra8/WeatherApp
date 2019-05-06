@@ -14,5 +14,5 @@ abstract class ActivityModule {
     abstract fun provideMainActivity(): MainActivity
 
     @Binds
-    abstract fun bindExecutionThread(uiThread: MainThread): ExecutionThread
+    abstract fun bindExecutionThread(mainThread: MainThread): ExecutionThread
 }

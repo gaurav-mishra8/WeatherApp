@@ -7,6 +7,6 @@ import retrofit2.http.Query
 
 interface WeatherForecastService {
 
-    @GET("v1/forecast.json")
+    @GET("forecast.json")
     fun getWeatherForecast(@Query("q") query: String, @Query("days") days: Int): Single<WeatherForecastResponse>
 }
