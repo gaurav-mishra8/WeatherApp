@@ -84,13 +84,14 @@ ext {
     ]
 
     presentationTestDependencies = [
-            junit         : "junit:junit:${jUnitVersion}",
-            mockito       : "com.nhaarman:mockito-kotlin:${mockitoKotlinVersion}",
-            archTesting   : "android.arch.core:core-testing:${archCompVersion}",
-            mockitoAndroid: "org.mockito:mockito-android:${mockitoAndroidVersion}",
-            androidRunner : "com.android.support.test:runner:${androidSupportRunnerVersion}",
-            androidRules  : "com.android.support.test:rules:${androidSupportRunnerVersion}",
-            espressoCore  : "com.android.support.test.espresso:espresso-core:${espressoVersion}",
+            junit          : "junit:junit:${jUnitVersion}",
+            mockito        : "com.nhaarman:mockito-kotlin:${mockitoKotlinVersion}",
+            archTesting    : "android.arch.core:core-testing:${archCompVersion}",
+            mockitoAndroid : "org.mockito:mockito-android:${mockitoAndroidVersion}",
+            androidRunner  : "com.android.support.test:runner:${androidSupportRunnerVersion}",
+            androidRules   : "com.android.support.test:rules:${androidSupportRunnerVersion}",
+            espressoCore   : "com.android.support.test.espresso:espresso-core:${espressoVersion}",
+            espressoContrib: "com.android.support.test.espresso:espresso-contrib:${espressoVersion}",
     ]
 
 

@@ -2,11 +2,13 @@ package com.greenbot.weatherapp
 
 import android.support.test.espresso.Espresso.onView
 import android.support.test.espresso.assertion.ViewAssertions.matches
+import android.support.test.espresso.contrib.RecyclerViewActions
 import android.support.test.espresso.matcher.ViewMatchers.*
 import android.support.test.rule.ActivityTestRule
 import android.support.test.rule.GrantPermissionRule
 import android.support.test.runner.AndroidJUnit4
 import com.greenbot.domain.model.WeatherForecast
+import com.greenbot.weatherapp.view.ForecastListAdapter
 import com.greenbot.weatherapp.view.MainActivity
 import com.nhaarman.mockito_kotlin.any
 import com.nhaarman.mockito_kotlin.whenever
@@ -89,6 +91,25 @@ class MainActivityTest {
 
         onView(withId(R.id.home_tv_error)).check(matches(isDisplayed()))
         onView(withId(R.id.home_tv_error)).check(matches(withText(errorMsg)))
+
+    }
+
+    @Test
+    fun testForecastListMatches() {
+
+        val weatherForecast = buildMockWeatherData()
+        stubWeatherRepositoryResponse(Single.just(weatherForecast))
+
+        val weatherViewData = buildMockWeatherViewData(weatherForecast)
+        activity.launchActivity(null)
+
+        weatherViewData.forecastList.forEachIndexed { index, item ->
+            onView(withId(R.id.home_rv_forecast))
+                .perform(RecyclerViewActions.scrollToPosition<ForecastListAdapter.ForecastViewHolder>(index))
+
+            onView(withId(R.id.home_rv_forecast))
+                .check(matches(hasDescendant(withText(item.day))))
+        }
 
     }
 

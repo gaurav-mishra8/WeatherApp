@@ -20,6 +20,9 @@ android {
             proguardFiles getDefaultProguardFile('proguard-android-optimize.txt'), 'proguard-rules.pro'
         }
     }
+    testOptions {
+        animationsDisabled = true
+    }
 }
 
 dependencies {
@@ -54,6 +57,9 @@ dependencies {
     kaptAndroidTest presentationDependencies.daggerCompiler
 
     androidTestImplementation(presentationTestDependencies.espressoCore) {
+        exclude group: 'com.android.support', module: 'support-annotations'
+    }
+    androidTestImplementation(presentationTestDependencies.espressoContrib) {
         exclude group: 'com.android.support', module: 'support-annotations'
     }
     androidTestImplementation(presentationTestDependencies.androidRunner) {
