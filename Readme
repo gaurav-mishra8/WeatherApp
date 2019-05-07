@@ -1,0 +1,13 @@
+WeatherApp is a sample app to fetch current temperature of user's location and the average temperature forecast for next 4 days.
+
+The app demonstrates a basic version of clean architecture where modules are mapped to layers of Clean Architecture.
+
+Third party libraries -
+
+1. RxJava
+2. RxAndroid
+3. OkHttp
+4. Retrofit
+5. Dagger
+7. Mockito
+8. Architecture Components
