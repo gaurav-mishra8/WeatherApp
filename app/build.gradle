@@ -12,7 +12,7 @@ android {
         targetSdkVersion rootProject.ext.androidTargetSdkVersion
         versionCode 1
         versionName "1.0"
-        testInstrumentationRunner "android.support.test.runner.AndroidJUnitRunner"
+        testInstrumentationRunner "com.greenbot.weatherapp.TestRunner"
     }
     buildTypes {
         release {
@@ -44,7 +44,19 @@ dependencies {
 
     compile project(":data")
 
-    testImplementation 'junit:junit:4.12'
-    androidTestImplementation 'com.android.support.test:runner:1.0.2'
-    androidTestImplementation 'com.android.support.test.espresso:espresso-core:3.0.2'
+    androidTestImplementation presentationTestDependencies.junit
+    androidTestImplementation presentationTestDependencies.mockito
+    androidTestImplementation presentationTestDependencies.mockitoAndroid
+    kaptTest presentationDependencies.daggerCompiler
+    kaptAndroidTest presentationDependencies.daggerCompiler
+
+    androidTestImplementation(presentationTestDependencies.espressoCore) {
+        exclude group: 'com.android.support', module: 'support-annotations'
+    }
+    androidTestImplementation(presentationTestDependencies.androidRunner) {
+        exclude group: 'com.android.support', module: 'support-annotations'
+    }
+    androidTestImplementation(presentationTestDependencies.androidRules) {
+        exclude group: 'com.android.support', module: 'support-annotations'
+    }
 }
