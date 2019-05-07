@@ -19,6 +19,7 @@ class MainViewModel @Inject constructor(
 
     companion object {
         const val ACTION_RETRY = "retry"
+        const val DEFAULT_DAY_COUNT = 5
     }
 
     private val weatherForecastLiveData = MutableLiveData<Resource<WeatherForecastViewData>>()
@@ -35,7 +36,10 @@ class MainViewModel @Inject constructor(
     fun fetchWeatherForecastDetails(latitude: Double, longitude: Double) {
         weatherForecastLiveData.value =
             Resource(status = ResourceStatus.LOADING)
-        getWeatherUseCase.execute(SingleDisposableObserver(), GetWeatherUseCase.Params(latitude, longitude, 5))
+        getWeatherUseCase.execute(
+            SingleDisposableObserver(),
+            GetWeatherUseCase.Params(latitude, longitude, DEFAULT_DAY_COUNT)
+        )
     }
 
     override fun onCleared() {

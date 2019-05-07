@@ -44,7 +44,10 @@ dependencies {
 
     compile project(":data")
 
-    androidTestImplementation presentationTestDependencies.junit
+    testCompile presentationTestDependencies.junit
+    testCompile presentationTestDependencies.archTesting
+    testCompile presentationTestDependencies.mockito
+
     androidTestImplementation presentationTestDependencies.mockito
     androidTestImplementation presentationTestDependencies.mockitoAndroid
     kaptTest presentationDependencies.daggerCompiler

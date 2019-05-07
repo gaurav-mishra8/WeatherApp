@@ -5,33 +5,20 @@ import com.greenbot.domain.model.WeatherForecast
 import com.greenbot.weatherapp.model.ForecastViewData
 import com.greenbot.weatherapp.model.WeatherForecastViewData
 import java.util.*
-import java.util.concurrent.ThreadLocalRandom
 
-fun randomUuid(): String {
+fun randomString(): String {
     return UUID.randomUUID().toString()
-}
-
-fun randomInt(): Int {
-    return ThreadLocalRandom.current().nextInt(0, 1000 + 1)
-}
-
-fun randomLong(): Long {
-    return randomInt().toLong()
 }
 
 fun randomDouble(): Double {
     return Random().nextDouble()
 }
 
-fun randomBoolean(): Boolean {
-    return Math.random() < 0.5
-}
-
 private fun buildMockForecastList(): List<Forecast> {
     val forecastList = mutableListOf<Forecast>()
 
     repeat(4) {
-        forecastList.add(Forecast(day = randomUuid(), avgTemp = randomDouble()))
+        forecastList.add(Forecast(day = randomString(), avgTemp = randomDouble()))
     }
 
     return forecastList
@@ -40,7 +27,7 @@ private fun buildMockForecastList(): List<Forecast> {
 
 fun buildMockWeatherData(): WeatherForecast {
     val weatherForecast = WeatherForecast(
-        locationName = randomUuid(),
+        locationName = randomString(),
         currentTemp = randomDouble(),
         forecastList = buildMockForecastList()
     )

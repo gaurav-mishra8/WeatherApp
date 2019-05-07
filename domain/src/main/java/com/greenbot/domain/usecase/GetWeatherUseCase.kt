@@ -9,7 +9,7 @@ import javax.inject.Inject
 /**
  * Usecase class to fetch weather forecast for provided number of days
  */
-class GetWeatherUseCase @Inject constructor(
+open class GetWeatherUseCase @Inject constructor(
     private val weatherRepository: WeatherRepository,
     executionThread: ExecutionThread
 ) : SingleUseCase<WeatherForecast, GetWeatherUseCase.Params>(executionThread) {

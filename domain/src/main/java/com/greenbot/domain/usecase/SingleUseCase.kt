@@ -20,7 +20,7 @@ abstract class SingleUseCase<T, in Params>(private val executionThread: Executio
 
     protected abstract fun buildUseCaseSingle(params: Params? = null): Single<T>
 
-    fun execute(singleObserver: DisposableSingleObserver<T>, params: Params? = null) {
+    open fun execute(singleObserver: DisposableSingleObserver<T>, params: Params? = null) {
 
         val disposable = buildUseCaseSingle(params)
             .subscribeOn(Schedulers.io())
