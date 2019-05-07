@@ -17,6 +17,7 @@ import com.greenbot.weatherapp.location.LocationListener
 import com.greenbot.weatherapp.location.LocationModel
 import com.greenbot.weatherapp.location.LocationProvider
 import com.greenbot.weatherapp.model.WeatherForecastViewData
+import com.greenbot.weatherapp.view.MainViewModel.Companion.ACTION_LOCATION_PERMISSION_DECLINED
 import com.greenbot.weatherapp.view.MainViewModel.Companion.ACTION_RETRY
 import dagger.android.AndroidInjection
 import kotlinx.android.synthetic.main.activity_home.*
@@ -101,7 +102,7 @@ class MainActivity : AppCompatActivity(), LocationListener {
         mainViewModel.getCommand().observe(this, Observer {
             when (it) {
                 Command.FetchLocation -> {
-                    fetchLocation()
+                    requestLocationPermission()
                 }
             }
         })
@@ -153,6 +154,8 @@ class MainActivity : AppCompatActivity(), LocationListener {
 
             if (PermissionManager.verifyPermissions(grantResults)) {
                 fetchLocation()
+            } else {
+                mainViewModel.onUserEvent(ACTION_LOCATION_PERMISSION_DECLINED)
             }
         }
 

@@ -19,6 +19,7 @@ class MainViewModel @Inject constructor(
 
     companion object {
         const val ACTION_RETRY = "retry"
+        const val ACTION_LOCATION_PERMISSION_DECLINED = "location_permission_declined"
         const val DEFAULT_DAY_COUNT = 5
     }
 
@@ -53,6 +54,10 @@ class MainViewModel @Inject constructor(
             ACTION_RETRY -> {
                 weatherForecastLiveData.value = Resource(status = ResourceStatus.LOADING)
                 commandLiveData.value = Command.FetchLocation
+            }
+            ACTION_LOCATION_PERMISSION_DECLINED -> {
+                weatherForecastLiveData.value =
+                    Resource(status = ResourceStatus.ERROR, error = "Location Permission needed")
             }
         }
 
