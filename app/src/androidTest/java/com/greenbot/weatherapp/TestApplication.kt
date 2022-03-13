@@ -19,7 +19,7 @@ class TestApplication : Application(), HasActivityInjector {
 
     companion object {
         fun appComponent(): TestApplicationComponent {
-            return (InstrumentationRegistry.getTargetContext().applicationContext
+            return (InstrumentationRegistry.getInstrumentation().targetContext.applicationContext
                     as TestApplication).appComponent
         }
     }

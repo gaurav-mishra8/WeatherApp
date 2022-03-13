@@ -60,7 +60,7 @@ object WeatherDataFactory {
     }
 
     fun getWeatherParams(): GetWeatherUseCase.Params {
-        return GetWeatherUseCase.Params(randomDouble(), randomDouble(), 5)
+        return GetWeatherUseCase.Params(randomDouble(), randomDouble(), 3)
     }
 
 }
