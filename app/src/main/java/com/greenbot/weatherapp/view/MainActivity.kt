@@ -131,7 +131,6 @@ class MainActivity : AppCompatActivity(), LocationListener {
         home_error_view.visibility = View.VISIBLE
         home_content_view.visibility = View.GONE
         home_progress_container.visibility = View.GONE
-
         home_tv_error.text = errorMsg
     }
 
