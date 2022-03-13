@@ -20,7 +20,7 @@ class MainViewModel @Inject constructor(
     companion object {
         const val ACTION_RETRY = "retry"
         const val ACTION_LOCATION_PERMISSION_DECLINED = "location_permission_declined"
-        const val DEFAULT_DAY_COUNT = 5
+        const val DEFAULT_DAY_COUNT = 3
     }
 
     private val weatherForecastLiveData = MutableLiveData<Resource<WeatherForecastViewData>>()

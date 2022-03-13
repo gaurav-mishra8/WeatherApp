@@ -18,7 +18,7 @@ object WeatherForecastServiceFactory {
 
     private fun makeWeatherForecastService(okHttpClient: OkHttpClient, gson: Gson): WeatherForecastService {
         val retrofit = Retrofit.Builder()
-            .baseUrl("http://api.apixu.com/v1/")
+            .baseUrl("https://api.weatherapi.com/v1/")
             .client(okHttpClient)
             .addCallAdapterFactory(RxJava2CallAdapterFactory.create())
             .addConverterFactory(GsonConverterFactory.create(gson))
