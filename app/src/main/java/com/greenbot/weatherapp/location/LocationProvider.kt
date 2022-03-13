@@ -4,6 +4,7 @@ import android.Manifest
 import android.annotation.SuppressLint
 import android.content.Context
 import android.content.pm.PackageManager
+import android.os.Looper
 import androidx.core.app.ActivityCompat
 import androidx.lifecycle.Lifecycle
 import androidx.lifecycle.LifecycleObserver
@@ -31,11 +32,12 @@ class LocationProvider(
             val latitude = lastLocation.latitude
             val location = LocationModel(longitude, latitude)
             locationListener.updateLocation(location)
+            unregisterForLocationUpdates()
         }
     }
 
     @SuppressLint("MissingPermission")
-    fun requestLocationUpdates() {
+    fun requestLocationUpdates(isForced: Boolean = false) {
         if (ActivityCompat.checkSelfPermission(
                 context,
                 Manifest.permission.ACCESS_FINE_LOCATION
@@ -49,7 +51,15 @@ class LocationProvider(
         val locationProviderClient = getFusedLocationProviderClient()
         val locationRequest = LocationRequest.create()
 
-        locationProviderClient.requestLocationUpdates(locationRequest, locationCallback, null)
+        if (isForced) {
+            locationRequest.fastestInterval = 1000L
+        }
+
+        locationProviderClient.requestLocationUpdates(
+            locationRequest,
+            locationCallback,
+            Looper.getMainLooper()
+        )
     }
 
     private fun getFusedLocationProviderClient(): FusedLocationProviderClient {

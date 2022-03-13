@@ -36,9 +36,7 @@ class MainActivity : AppCompatActivity(), LocationListener {
 
     override fun onCreate(savedInstanceState: Bundle?) {
         AndroidInjection.inject(this)
-
         super.onCreate(savedInstanceState)
-
         setContentView(R.layout.activity_home)
 
         home_rv_forecast.apply {
@@ -52,16 +50,13 @@ class MainActivity : AppCompatActivity(), LocationListener {
         }
 
         mainViewModel = ViewModelProviders.of(this, viewModelFactory).get(MainViewModel::class.java)
-
         observeViewModel()
 
         locationProvider = LocationProvider(this, this.lifecycle, this)
-
         requestLocationPermission()
-
     }
 
-    private fun requestLocationPermission() {
+    private fun requestLocationPermission(isForced: Boolean = false) {
         if (!PermissionManager.checkSelfPermission(this)) {
             if (Build.VERSION.SDK_INT >= Build.VERSION_CODES.M) {
                 requestPermissions(
@@ -72,12 +67,12 @@ class MainActivity : AppCompatActivity(), LocationListener {
                 )
             }
         } else {
-            fetchLocation()
+            fetchLocation(isForced)
         }
     }
 
-    private fun fetchLocation() {
-        locationProvider.requestLocationUpdates()
+    private fun fetchLocation(isForced: Boolean) {
+        locationProvider.requestLocationUpdates(isForced)
     }
 
     private fun observeViewModel() {
@@ -102,7 +97,7 @@ class MainActivity : AppCompatActivity(), LocationListener {
         mainViewModel.getCommand().observe(this, Observer {
             when (it) {
                 Command.FetchLocation -> {
-                    requestLocationPermission()
+                    requestLocationPermission(true)
                 }
             }
         })
@@ -123,16 +118,13 @@ class MainActivity : AppCompatActivity(), LocationListener {
         home_content_view.visibility = View.VISIBLE
         home_progress_container.visibility = View.GONE
 
-
         val slideInBottom = AnimationUtils.loadAnimation(this, R.anim.slide_in_bottom)
         home_rv_container.animation = slideInBottom
-
 
         home_tv_temperature.text = weatherForecast.currentTemp.toString()
         home_tv_location.text = weatherForecast.locationName
         val forecastListAdapter = home_rv_forecast.adapter as ForecastListAdapter
         forecastListAdapter.setForecastList(weatherForecast.forecastList)
-
     }
 
     private fun showErrorState(errorMsg: String) {
@@ -141,7 +133,6 @@ class MainActivity : AppCompatActivity(), LocationListener {
         home_progress_container.visibility = View.GONE
 
         home_tv_error.text = errorMsg
-
     }
 
     override fun updateLocation(locationModel: LocationModel) {
@@ -155,13 +146,11 @@ class MainActivity : AppCompatActivity(), LocationListener {
     ) {
         super.onRequestPermissionsResult(requestCode, permissions, grantResults)
         if (requestCode == PERMISSIONS_REQUEST_GET_LOCATION) {
-
             if (PermissionManager.verifyPermissions(grantResults)) {
-                fetchLocation()
+                fetchLocation(false)
             } else {
                 mainViewModel.onUserEvent(ACTION_LOCATION_PERMISSION_DECLINED)
             }
         }
-
     }
 }
