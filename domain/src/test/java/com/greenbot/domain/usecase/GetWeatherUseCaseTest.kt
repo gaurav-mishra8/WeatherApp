@@ -18,6 +18,7 @@ class GetWeatherUseCaseTest {
 
     @Mock
     private lateinit var weatherRepository: WeatherRepository
+
     @Mock
     private lateinit var executionThread: ExecutionThread
 

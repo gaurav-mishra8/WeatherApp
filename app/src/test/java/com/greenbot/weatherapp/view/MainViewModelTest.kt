@@ -116,7 +116,10 @@ class MainViewModelTest {
 
     }
 
-    private fun stubWeatherViewMapper(weatherForecast: WeatherForecast, weatherViewData: WeatherForecastViewData) {
+    private fun stubWeatherViewMapper(
+        weatherForecast: WeatherForecast,
+        weatherViewData: WeatherForecastViewData
+    ) {
         whenever(mapper.mapToView(weatherForecast)).thenReturn(weatherViewData)
     }
 

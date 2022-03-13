@@ -14,6 +14,9 @@ data class CurrentTemperature(@SerializedName("temp_c") val temperature: Double?
 
 data class Forecast(@SerializedName("forecastday") val forecastDayList: List<ForecastDay>)
 
-data class ForecastDay(@SerializedName("date") val date: String?, @SerializedName("day") val day: Day?)
+data class ForecastDay(
+    @SerializedName("date") val date: String?,
+    @SerializedName("day") val day: Day?
+)
 
 data class Day(@SerializedName("avgtemp_c") val avgTemp: Double?)

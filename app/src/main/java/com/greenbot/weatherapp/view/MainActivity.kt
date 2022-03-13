@@ -1,13 +1,13 @@
 package com.greenbot.weatherapp.view
 
 import android.Manifest
-import androidx.lifecycle.Observer
-import androidx.lifecycle.ViewModelProviders
 import android.os.Build
 import android.os.Bundle
-import androidx.appcompat.app.AppCompatActivity
 import android.view.View
 import android.view.animation.AnimationUtils
+import androidx.appcompat.app.AppCompatActivity
+import androidx.lifecycle.Observer
+import androidx.lifecycle.ViewModelProviders
 import com.greenbot.weatherapp.PermissionManager
 import com.greenbot.weatherapp.PermissionManager.PERMISSIONS_REQUEST_GET_LOCATION
 import com.greenbot.weatherapp.R
@@ -148,7 +148,11 @@ class MainActivity : AppCompatActivity(), LocationListener {
         mainViewModel.fetchWeatherForecastDetails(locationModel.latitude, locationModel.longitude)
     }
 
-    override fun onRequestPermissionsResult(requestCode: Int, permissions: Array<out String>, grantResults: IntArray) {
+    override fun onRequestPermissionsResult(
+        requestCode: Int,
+        permissions: Array<out String>,
+        grantResults: IntArray
+    ) {
         super.onRequestPermissionsResult(requestCode, permissions, grantResults)
         if (requestCode == PERMISSIONS_REQUEST_GET_LOCATION) {
 

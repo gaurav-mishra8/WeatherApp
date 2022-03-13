@@ -16,7 +16,10 @@ object WeatherForecastServiceFactory {
         return makeWeatherForecastService(okHttpClient, Gson())
     }
 
-    private fun makeWeatherForecastService(okHttpClient: OkHttpClient, gson: Gson): WeatherForecastService {
+    private fun makeWeatherForecastService(
+        okHttpClient: OkHttpClient,
+        gson: Gson
+    ): WeatherForecastService {
         val retrofit = Retrofit.Builder()
             .baseUrl("https://api.weatherapi.com/v1/")
             .client(okHttpClient)
@@ -33,7 +36,8 @@ object WeatherForecastServiceFactory {
                 val originalRequest = chain.request()
                 val originalUrl = originalRequest.url()
 
-                val newUrl = originalUrl.newBuilder().addQueryParameter("key", "99b9bc65d95e4580ab062554221303")
+                val newUrl = originalUrl.newBuilder()
+                    .addQueryParameter("key", "99b9bc65d95e4580ab062554221303")
                     .build()
 
                 val requestBuilder = originalRequest.newBuilder().url(newUrl)

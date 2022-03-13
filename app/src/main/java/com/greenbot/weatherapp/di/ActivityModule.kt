@@ -1,8 +1,8 @@
 package com.greenbot.weatherapp.di
 
 import com.greenbot.domain.ExecutionThread
-import com.greenbot.weatherapp.view.MainActivity
 import com.greenbot.weatherapp.MainThread
+import com.greenbot.weatherapp.view.MainActivity
 import dagger.Binds
 import dagger.Module
 import dagger.android.ContributesAndroidInjector

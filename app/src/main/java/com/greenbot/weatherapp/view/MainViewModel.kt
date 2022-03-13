@@ -17,12 +17,6 @@ class MainViewModel @Inject constructor(
     private val mapper: WeatherForecastViewMapper
 ) : ViewModel() {
 
-    companion object {
-        const val ACTION_RETRY = "retry"
-        const val ACTION_LOCATION_PERMISSION_DECLINED = "location_permission_declined"
-        const val DEFAULT_DAY_COUNT = 3
-    }
-
     private val weatherForecastLiveData = MutableLiveData<Resource<WeatherForecastViewData>>()
     private val commandLiveData = MutableLiveData<Command>()
 
@@ -49,7 +43,6 @@ class MainViewModel @Inject constructor(
     }
 
     fun onUserEvent(action: String) {
-
         when (action) {
             ACTION_RETRY -> {
                 weatherForecastLiveData.value = Resource(status = ResourceStatus.LOADING)
@@ -60,7 +53,6 @@ class MainViewModel @Inject constructor(
                     Resource(status = ResourceStatus.ERROR, error = "Location Permission needed")
             }
         }
-
     }
 
     inner class SingleDisposableObserver() : DisposableSingleObserver<WeatherForecast>() {
@@ -83,6 +75,11 @@ class MainViewModel @Inject constructor(
         }
     }
 
+    companion object {
+        const val ACTION_RETRY = "retry"
+        const val ACTION_LOCATION_PERMISSION_DECLINED = "location_permission_declined"
+        const val DEFAULT_DAY_COUNT = 3
+    }
 }
 
 sealed class Command {

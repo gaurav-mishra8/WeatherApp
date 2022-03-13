@@ -12,7 +12,7 @@
     <dimen name="home_forecast_day_font_size">16sp</dimen>
     <dimen name="home_forecast_daytemp_font_size">16sp</dimen>
     <dimen name="home_error_font_size">54sp</dimen>
-    
+
     <dimen name="forecast_list_item_height">80dp</dimen>
     <dimen name="forecast_list_item_font_size">16sp</dimen>
 

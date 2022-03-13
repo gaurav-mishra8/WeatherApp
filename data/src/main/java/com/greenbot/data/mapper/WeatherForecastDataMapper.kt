@@ -7,7 +7,8 @@ import java.text.SimpleDateFormat
 import java.util.*
 import javax.inject.Inject
 
-class WeatherForecastDataMapper @Inject constructor() : DataModelMapper<WeatherForecastResponse, WeatherForecast> {
+class WeatherForecastDataMapper @Inject constructor() :
+    DataModelMapper<WeatherForecastResponse, WeatherForecast> {
 
     override fun mapFromDataModel(dataModel: WeatherForecastResponse): WeatherForecast {
         val avgForecastList = mutableListOf<Forecast>()

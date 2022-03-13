@@ -4,9 +4,9 @@ import androidx.test.espresso.Espresso.onView
 import androidx.test.espresso.assertion.ViewAssertions.matches
 import androidx.test.espresso.contrib.RecyclerViewActions
 import androidx.test.espresso.matcher.ViewMatchers.*
+import androidx.test.ext.junit.runners.AndroidJUnit4
 import androidx.test.rule.ActivityTestRule
 import androidx.test.rule.GrantPermissionRule
-import androidx.test.ext.junit.runners.AndroidJUnit4
 import com.greenbot.domain.model.WeatherForecast
 import com.greenbot.weatherapp.view.ForecastListAdapter
 import com.greenbot.weatherapp.view.MainActivity
@@ -105,7 +105,11 @@ class MainActivityTest {
 
         weatherViewData.forecastList.forEachIndexed { index, item ->
             onView(withId(R.id.home_rv_forecast))
-                .perform(RecyclerViewActions.scrollToPosition<ForecastListAdapter.ForecastViewHolder>(index))
+                .perform(
+                    RecyclerViewActions.scrollToPosition<ForecastListAdapter.ForecastViewHolder>(
+                        index
+                    )
+                )
 
             onView(withId(R.id.home_rv_forecast))
                 .check(matches(hasDescendant(withText(item.day))))
@@ -114,7 +118,10 @@ class MainActivityTest {
     }
 
     private fun stubWeatherRepositoryResponse(observable: Single<WeatherForecast>) {
-        whenever(TestApplication.appComponent().weatherRepository().getWeatherForecast(any(), any(), any())).thenReturn(
+        whenever(
+            TestApplication.appComponent().weatherRepository()
+                .getWeatherForecast(any(), any(), any())
+        ).thenReturn(
             observable
         )
     }

@@ -5,7 +5,8 @@ import com.greenbot.weatherapp.model.ForecastViewData
 import com.greenbot.weatherapp.model.WeatherForecastViewData
 import javax.inject.Inject
 
-open class WeatherForecastViewMapper @Inject constructor() : ViewMapper<WeatherForecast, WeatherForecastViewData> {
+open class WeatherForecastViewMapper @Inject constructor() :
+    ViewMapper<WeatherForecast, WeatherForecastViewData> {
 
     override fun mapToView(weatherForecast: WeatherForecast): WeatherForecastViewData {
 

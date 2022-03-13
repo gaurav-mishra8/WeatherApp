@@ -2,8 +2,8 @@ package com.greenbot.weatherapp.di
 
 import androidx.lifecycle.ViewModel
 import androidx.lifecycle.ViewModelProvider
-import com.greenbot.weatherapp.view.MainViewModel
 import com.greenbot.weatherapp.ViewModelFactory
+import com.greenbot.weatherapp.view.MainViewModel
 import dagger.Binds
 import dagger.MapKey
 import dagger.Module
