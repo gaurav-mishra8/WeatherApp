@@ -1,6 +1,6 @@
 package com.greenbot.weatherapp.view
 
-import android.arch.core.executor.testing.InstantTaskExecutorRule
+import androidx.arch.core.executor.testing.InstantTaskExecutorRule
 import com.greenbot.domain.model.WeatherForecast
 import com.greenbot.domain.usecase.GetWeatherUseCase
 import com.greenbot.weatherapp.ResourceStatus

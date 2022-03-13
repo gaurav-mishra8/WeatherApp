@@ -1,6 +1,6 @@
 package com.greenbot.weatherapp.view
 
-import android.support.v7.widget.RecyclerView
+import androidx.recyclerview.widget.RecyclerView
 import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
@@ -8,7 +8,7 @@ import android.widget.TextView
 import com.greenbot.weatherapp.R
 import com.greenbot.weatherapp.model.ForecastViewData
 
-class ForecastListAdapter : RecyclerView.Adapter<ForecastListAdapter.ForecastViewHolder>() {
+class ForecastListAdapter : androidx.recyclerview.widget.RecyclerView.Adapter<ForecastListAdapter.ForecastViewHolder>() {
 
     private val data = mutableListOf<ForecastViewData>()
 
@@ -28,7 +28,7 @@ class ForecastListAdapter : RecyclerView.Adapter<ForecastListAdapter.ForecastVie
         data.addAll(forecastList)
     }
 
-    inner class ForecastViewHolder(view: View) : RecyclerView.ViewHolder(view) {
+    inner class ForecastViewHolder(view: View) : androidx.recyclerview.widget.RecyclerView.ViewHolder(view) {
 
         val forecastDay: TextView = itemView.findViewById(R.id.forecast_tv_day)
         val forecastTemp: TextView = itemView.findViewById(R.id.forecast_tv_temp)

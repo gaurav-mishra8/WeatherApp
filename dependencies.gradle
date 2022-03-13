@@ -2,7 +2,7 @@ ext {
 
     //Android
     androidBuildToolsVersion = '28.0.0'
-    androidMinSdkVersion = 16
+    androidMinSdkVersion = 21
     androidCompileSdkVersion = 28
     androidTargetSdkVersion = 28
     kotlinVersion = '1.3.31'
@@ -73,12 +73,12 @@ ext {
             rxAndroid             : "io.reactivex.rxjava2:rxandroid:${rxAndroidVersion}",
             javaxInject           : "javax.inject:javax.inject:${javaxInjectVersion}",
             javaxAnnotation       : "javax.annotation:jsr250-api:${javaxAnnotationVersion}",
-            androidSupportV4      : "com.android.support:support-v4:${supportLibVersion}",
-            appCompatV7           : "com.android.support:appcompat-v7:${supportLibVersion}",
-            recyclerView          : "com.android.support:recyclerview-v7:${supportLibVersion}",
+            androidSupportV4      : 'androidx.legacy:legacy-support-v4:1.0.0',
+            appCompatV7           : 'androidx.appcompat:appcompat:1.0.0',
+            recyclerView          : 'androidx.recyclerview:recyclerview:1.0.0',
             supportDesign         : "com.android.support:design:${supportLibVersion}",
-            constraintLayout      : "com.android.support.constraint:constraint-layout:${constraintLayoutVersion}",
-            archComponents        : "android.arch.lifecycle:extensions:${archCompVersion}",
+            constraintLayout      : 'androidx.constraintlayout:constraintlayout:1.1.3',
+            archComponents        : 'androidx.lifecycle:lifecycle-extensions:2.0.0',
             playServicesLocation  : "com.google.android.gms:play-services-location:${projectPlayServicesVersion}"
 
     ]
@@ -86,12 +86,12 @@ ext {
     presentationTestDependencies = [
             junit          : "junit:junit:${jUnitVersion}",
             mockito        : "com.nhaarman:mockito-kotlin:${mockitoKotlinVersion}",
-            archTesting    : "android.arch.core:core-testing:${archCompVersion}",
+            archTesting    : 'androidx.arch.core:core-testing:2.0.0',
             mockitoAndroid : "org.mockito:mockito-android:${mockitoAndroidVersion}",
-            androidRunner  : "com.android.support.test:runner:${androidSupportRunnerVersion}",
-            androidRules   : "com.android.support.test:rules:${androidSupportRunnerVersion}",
-            espressoCore   : "com.android.support.test.espresso:espresso-core:${espressoVersion}",
-            espressoContrib: "com.android.support.test.espresso:espresso-contrib:${espressoVersion}",
+            androidRunner  : 'androidx.test.ext:junit:1.1.1',
+            androidRules   : 'androidx.test:rules:1.1.1',
+            espressoCore   : 'androidx.test.espresso:espresso-core:3.1.0',
+            espressoContrib: 'androidx.test.espresso:espresso-contrib:3.1.0',
     ]
 
 

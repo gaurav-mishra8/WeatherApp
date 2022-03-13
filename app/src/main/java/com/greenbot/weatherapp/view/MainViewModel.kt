@@ -1,8 +1,8 @@
 package com.greenbot.weatherapp.view
 
-import android.arch.lifecycle.LiveData
-import android.arch.lifecycle.MutableLiveData
-import android.arch.lifecycle.ViewModel
+import androidx.lifecycle.LiveData
+import androidx.lifecycle.MutableLiveData
+import androidx.lifecycle.ViewModel
 import com.greenbot.domain.model.WeatherForecast
 import com.greenbot.domain.usecase.GetWeatherUseCase
 import com.greenbot.weatherapp.Resource

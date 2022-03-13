@@ -2,7 +2,7 @@ package com.greenbot.weatherapp
 
 import android.app.Activity
 import android.app.Application
-import android.support.test.InstrumentationRegistry
+import androidx.test.platform.app.InstrumentationRegistry
 import com.greenbot.weatherapp.injection.DaggerTestApplicationComponent
 import com.greenbot.weatherapp.injection.TestApplicationComponent
 import dagger.android.AndroidInjector
