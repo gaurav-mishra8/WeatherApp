@@ -13,7 +13,7 @@ ext {
     gsonVersion = '2.8.1'
     okHttpVersion = '3.8.1'
     retrofitVersion = '2.3.0'
-    daggerVersion = '2.11'
+    daggerVersion = '2.16'
     archCompVersion = '1.1.1'
     rxJavaVersion = '2.0.2'
     rxAndroidVersion = '2.0.1'

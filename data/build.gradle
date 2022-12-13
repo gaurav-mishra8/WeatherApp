@@ -21,6 +21,3 @@ dependencies {
     testImplementation dataTestDependencies.mockito
     testImplementation dataTestDependencies.junit
 }
-
-sourceCompatibility = "7"
-targetCompatibility = "7"

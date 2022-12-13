@@ -23,6 +23,10 @@ android {
     testOptions {
         animationsDisabled = true
     }
+    compileOptions {
+        sourceCompatibility 1.8
+        targetCompatibility 1.8
+    }
 }
 
 dependencies {
@@ -45,11 +49,11 @@ dependencies {
     kapt presentationDependencies.daggerCompiler
     kapt presentationDependencies.daggerAndroidProcessor
 
-    compile project(":data")
+    implementation project(":data")
 
-    testCompile presentationTestDependencies.junit
-    testCompile presentationTestDependencies.archTesting
-    testCompile presentationTestDependencies.mockito
+    testImplementation presentationTestDependencies.junit
+    testImplementation presentationTestDependencies.archTesting
+    testImplementation presentationTestDependencies.mockito
 
     androidTestImplementation presentationTestDependencies.mockito
     androidTestImplementation presentationTestDependencies.mockitoAndroid

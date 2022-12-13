@@ -37,7 +37,7 @@ object WeatherForecastServiceFactory {
                 val originalUrl = originalRequest.url()
 
                 val newUrl = originalUrl.newBuilder()
-                    .addQueryParameter("key", "YOUR_API_KEY_HERE")
+                    .addQueryParameter("key", "YOUR_API_KEY")
                     .build()
 
                 val requestBuilder = originalRequest.newBuilder().url(newUrl)
